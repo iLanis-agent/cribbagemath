@@ -1,0 +1,196 @@
+[
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "5H",
+        "5D",
+        "5S",
+        "JC"
+      ],
+      "5C"
+    ],
+    "expected": "eight fifteens (16), six pairs (12), no runs, no flush, and nobs (1) - 29 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "5H",
+        "5D",
+        "5C",
+        "JD"
+      ],
+      "5S"
+    ],
+    "expected": "eight fifteens (16), six pairs (12), no runs, no flush, and no nobs - 28 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "4H",
+        "4D",
+        "5S",
+        "6C"
+      ],
+      "AH"
+    ],
+    "expected": "three fifteens (6), a pair (2), two runs of three (6), no flush, and no nobs - 14 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "2H",
+        "5H",
+        "9H",
+        "KH"
+      ],
+      "3C"
+    ],
+    "expected": "two fifteens (4), no pairs, no runs, a flush (4), and no nobs - 8 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "2H",
+        "5H",
+        "9H",
+        "KH"
+      ],
+      "QH"
+    ],
+    "expected": "two fifteens (4), no pairs, no runs, a five-card flush (5), and no nobs - 9 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "2H",
+        "4D",
+        "8S",
+        "KC"
+      ],
+      "6C"
+    ],
+    "expected": "no fifteens, no pairs, no runs, no flush, and no nobs - 0 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "7H",
+        "8D",
+        "9S",
+        "TH"
+      ],
+      "JC"
+    ],
+    "expected": "one fifteen (2), no pairs, a run of five (5), no flush, and no nobs - 7 points."
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "5H",
+        "5H",
+        "5S",
+        "JC"
+      ],
+      "5C"
+    ],
+    "expected": "ERR:the 5H shows up twice"
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "5H",
+        "XQ",
+        "5S",
+        "JC"
+      ],
+      "5C"
+    ],
+    "expected": "ERR:XQ is not a card"
+  },
+  {
+    "fn": "handTruth",
+    "args": [
+      [
+        "5H",
+        "",
+        "5S",
+        "JC"
+      ],
+      "5C"
+    ],
+    "expected": "ERR:enter all 5 cards: four in hand plus the starter"
+  },
+  {
+    "fn": "pegTruth",
+    "args": [
+      24,
+      7
+    ],
+    "expected": "24 plus a 7 is 31 for 2."
+  },
+  {
+    "fn": "pegTruth",
+    "args": [
+      24,
+      6
+    ],
+    "expected": "24 plus a 6 is 30 - 1 short of the 2."
+  },
+  {
+    "fn": "pegTruth",
+    "args": [
+      24,
+      8
+    ],
+    "expected": "24 plus an 8 is 32 - it doesn't go."
+  },
+  {
+    "fn": "pegTruth",
+    "args": [
+      31,
+      5
+    ],
+    "expected": "ERR:the count must be under 31"
+  },
+  {
+    "fn": "winTruth",
+    "args": [
+      118,
+      6
+    ],
+    "expected": "118 plus 6 is 124 - pegged out."
+  },
+  {
+    "fn": "winTruth",
+    "args": [
+      109,
+      6
+    ],
+    "expected": "109 plus 6 is 115 - 6 to go."
+  },
+  {
+    "fn": "winTruth",
+    "args": [
+      121,
+      4
+    ],
+    "expected": "ERR:the game is already over"
+  },
+  {
+    "fn": "winTruth",
+    "args": [
+      110,
+      30
+    ],
+    "expected": "ERR:a hand scores at most 29"
+  }
+]
