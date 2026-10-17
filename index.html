@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cribbage Math - cribbage scoring honesty</title>
+<style>
+  :root { --accent:#1f4e3d; --ink:#22291f; --paper:#f4f6f0; --soft:#e6ecdf; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2.5rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:2.2rem; letter-spacing:.5px; color:var(--accent); }
+  p.lede { font-size:1.12rem; margin:.9rem 0 1.6rem; }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.6rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  section { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1.1rem 1.2rem; margin-bottom:1.2rem; }
+  h2 { font-size:1.18rem; margin-bottom:.5rem; }
+  section p { font-size:.98rem; }
+  a.btn { display:inline-block; margin-top:1.4rem; background:var(--accent); color:#fff; text-decoration:none; padding:.8rem 1.6rem; border-radius:999px; font-size:1.05rem; }
+  footer { margin-top:2.2rem; font-size:.85rem; color:#5d6a5a; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Cribbage Math</h1>
+  <p class="lede">Nobody at the table counts the same hand the same way twice.</p>
+  <div class="boundary">
+    <strong>Boundary: rules arithmetic only</strong>
+    Cribbage Math counts the hand you type in - fifteens, pairs, runs, flush, nobs. It never calls your pegging or judges the crib you threw.
+  </div>
+  <section>
+    <h2>The hand truth</h2>
+    <p>The 29 hand, counted once: eight fifteens (16), six pairs (12), no runs, no flush, and nobs (1) - 29 points. The 19 hand counts too: no fifteens, no pairs, no runs, no flush, and no nobs - 0 points.</p>
+  </section>
+  <section>
+    <h2>The count truth</h2>
+    <p>24 plus a 7 is 31 for 2. 24 plus a 6 is 30 - 1 short of the 2. 24 plus an 8 is 32, and it doesn't go.</p>
+  </section>
+  <section>
+    <h2>The win truth</h2>
+    <p>118 plus 6 is 124 - pegged out. 109 plus 6 is 115, and the 6 to go is your opponent's whole strategy.</p>
+  </section>
+  <a class="btn" href="app.html">Count your hand</a>
+  <footer>Cribbage Math is exact arithmetic over the game's published scoring, nothing more.</footer>
+</main>
+</body>
+</html>
