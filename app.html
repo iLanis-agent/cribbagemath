@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cribbage Math - app</title>
+<style>
+  :root { --accent:#1f4e3d; --ink:#22291f; --paper:#f4f6f0; --soft:#e6ecdf; }
+  * { box-sizing:border-box; margin:0; }
+  body { font-family:Georgia, 'Times New Roman', serif; background:var(--paper); color:var(--ink); line-height:1.55; padding:2rem 1.2rem; }
+  main { max-width:660px; margin:0 auto; }
+  h1 { font-size:1.8rem; color:var(--accent); }
+  .boundary { background:#fdeaea; border-left:6px solid #b03030; color:#5c1c1c; border-radius:6px; padding:1rem 1.1rem; margin:1rem 0 1.4rem; }
+  .boundary strong { display:block; margin-bottom:.3rem; }
+  .panel { background:var(--soft); border-left:5px solid var(--accent); border-radius:6px; padding:1rem 1.1rem; margin-bottom:1.1rem; }
+  h2 { font-size:1.1rem; margin-bottom:.6rem; }
+  p.note { font-size:.9rem; margin-bottom:.4rem; }
+  label { display:block; font-size:.9rem; margin:.45rem 0 .1rem; }
+  input { width:100%; padding:.45rem .55rem; font-size:1rem; border:1px solid #c3d0ba; border-radius:6px; background:#fff; color:var(--ink); }
+  .cards { display:grid; grid-template-columns:repeat(5, 1fr); gap:.4rem; }
+  .cards input { text-align:center; text-transform:uppercase; }
+  .out { margin-top:.7rem; font-size:.98rem; background:#fff; border:1px dashed #c3d0ba; border-radius:6px; padding:.6rem .7rem; min-height:2.4rem; }
+  .out.err { border-color:#b03030; color:#8a1f1f; font-style:normal; }
+  footer { margin-top:1.8rem; font-size:.85rem; color:#5d6a5a; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Cribbage Math</h1>
+  <div class="boundary">
+    <strong>Boundary: rules arithmetic only</strong>
+    This page counts the hand you type in. It never calls your pegging or judges the crib you threw.
+  </div>
+
+  <div class="panel">
+    <h2>The hand truth</h2>
+    <p class="note">Cards as rank plus suit: 5H, 10D, JC. Four in hand, then the starter.</p>
+    <div class="cards">
+      <input id="h1" maxlength="3" value="5H" aria-label="hand card 1">
+      <input id="h2" maxlength="3" value="5D" aria-label="hand card 2">
+      <input id="h3" maxlength="3" value="5S" aria-label="hand card 3">
+      <input id="h4" maxlength="3" value="JC" aria-label="hand card 4">
+      <input id="st" maxlength="3" value="5C" aria-label="starter card">
+    </div>
+    <div class="out" id="h-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The count truth</h2>
+    <p class="note">The 31 limit, run honestly.</p>
+    <label for="p-current">The count now</label>
+    <input id="p-current" type="number" min="0" max="30" step="1" value="24">
+    <label for="p-pip">Your card's value</label>
+    <input id="p-pip" type="number" min="1" max="10" step="1" value="7">
+    <div class="out" id="p-out"></div>
+  </div>
+
+  <div class="panel">
+    <h2>The win truth</h2>
+    <p class="note">The last holes to 121.</p>
+    <label for="w-score">Your score</label>
+    <input id="w-score" type="number" min="0" max="120" step="1" value="109">
+    <label for="w-points">Points in this hand</label>
+    <input id="w-points" type="number" min="0" max="29" step="1" value="6">
+    <div class="out" id="w-out"></div>
+  </div>
+
+  <footer>Cribbage Math is exact arithmetic over the game's published scoring. <a href="index.html">Why it exists</a>.</footer>
+</main>
+<script src="engine.js"></script>
+<script>
+  const num = (id) => Number(document.getElementById(id).value);
+  const code = (id) => document.getElementById(id).value;
+  function show(out, fn) {
+    try {
+      const text = fn();
+      out.textContent = text;
+      out.classList.remove("err");
+    } catch (e) {
+      out.textContent = e.message;
+      out.classList.add("err");
+    }
+  }
+  const hOut = document.getElementById("h-out");
+  const pOut = document.getElementById("p-out");
+  const wOut = document.getElementById("w-out");
+  function recalc() {
+    show(hOut, () => handTruth([code("h1"), code("h2"), code("h3"), code("h4")], code("st")));
+    show(pOut, () => pegTruth(num("p-current"), num("p-pip")));
+    show(wOut, () => winTruth(num("w-score"), num("w-points")));
+  }
+  document.querySelectorAll("input").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  recalc();
+</script>
+</body>
+</html>
